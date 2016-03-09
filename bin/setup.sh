@@ -65,7 +65,8 @@ if [ "$BUILD_MODE" = "release" ] ; then
    cp ../sources.list.d/osgeolive.list /etc/apt/sources.list.d/
    # cp ../sources.list.d/osgeolive-nightly.list /etc/apt/sources.list.d/
 else
-   cp ../sources.list.d/osgeolive-nightly.list /etc/apt/sources.list.d/
+   # cp ../sources.list.d/osgeolive-nightly.list /etc/apt/sources.list.d/
+   cp ../sources.list.d/osgeolive.list /etc/apt/sources.list.d/
 fi
 
 #Add keys for repositories
