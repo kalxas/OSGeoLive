@@ -1,6 +1,6 @@
 #!/bin/sh
 #############################################################################
-# 
+#
 # Purpose: Creating OSGeoLive as an Ubuntu customization
 #          https://help.ubuntu.com/community/LiveCDCustomization
 # Authors: Alex Mandel <tech_dev@wildintellect.com>
@@ -10,7 +10,7 @@
 # Copyright (c) 2013-2016 Open Source Geospatial Foundation (OSGeo)
 #
 # Licensed under the GNU LGPL.
-# 
+#
 # This library is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published
 # by the Free Software Foundation, either version 2.1 of the License,
@@ -30,7 +30,7 @@
 #     4. genisoimage, which provides mkisofs
 #     5. syslinux-utils, which provides isohybrid
 #     6. An Ubuntu kernel with squashfs support (present in Ubuntu 6.06 and later)
-#     7. QEMU/KVM, VirtualBox or VMware for testing (optional) 
+#     7. QEMU/KVM, VirtualBox or VMware for testing (optional)
 #
 #############################################################################
 
@@ -126,13 +126,13 @@ echo "Downloading Lubuntu original image..."
 echo "====================================="
 
 #Stuff to be done the 1st time, should already be in place for additional builds
-#Download into an empty directory 
+#Download into an empty directory
 mkdir -p ~/livecdtmp
 cd ~/livecdtmp
 #mv ubuntu-9.04-desktop-i386.iso ~/livecdtmp
 UBU_MIRROR="http://cdimage.ubuntu.com"
 UBU_RELEASE="16.04"
-ISO_RELEASE="16.04.2"
+ISO_RELEASE="16.04.3"
 UBU_ISO="lubuntu-${ISO_RELEASE}-desktop-$ARCH.iso"
 wget -c --progress=dot:mega \
    "$UBU_MIRROR/lubuntu/releases/$UBU_RELEASE/release/$UBU_ISO"
@@ -143,14 +143,14 @@ mkdir mnt
 sudo mount -o loop "$UBU_ISO" mnt
 echo "Lubuntu $ISO_RELEASE $ARCH image mounted."
 
-#Extract .iso contents into dir 'extract-cd' 
+#Extract .iso contents into dir 'extract-cd'
 mkdir "extract-cd"
 rsync --exclude=/casper/filesystem.squashfs -a mnt/ "extract-cd"
 
 echo
 echo "Extracting squashfs from Lubuntu image"
 echo "======================================"
-#Extract the SquashFS filesystem 
+#Extract the SquashFS filesystem
 sudo unsquashfs mnt/casper/filesystem.squashfs
 #Does the above need to be done every time or can it be done once, and then
 # just make a fresh copy of the chroot for each builds
@@ -159,7 +159,7 @@ sudo mv squashfs-root edit
 echo
 echo "Setting up network for chroot"
 echo "======================================"
-#If you need the network connection within chroot 
+#If you need the network connection within chroot
 sudo cp /etc/resolv.conf edit/etc/
 sudo cp /etc/hosts edit/etc/
 
@@ -255,7 +255,7 @@ echo
 echo "Regenerating manifest..."
 echo "======================================"
 
-#Regenerate manifest 
+#Regenerate manifest
 chmod +w extract-cd/casper/filesystem.manifest
 sudo chroot edit dpkg-query -W --showformat='${Package} ${Version}\n' > \
    extract-cd/casper/filesystem.manifest
