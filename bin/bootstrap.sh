@@ -59,6 +59,7 @@ echo "GIT_BRANCH: $GIT_BRANCH"
 apt update
 
 # Install git
+apt-get -q update
 apt-get --assume-yes install git
 
 # Clone git repository to specified branch
