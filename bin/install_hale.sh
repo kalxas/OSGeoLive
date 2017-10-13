@@ -53,5 +53,14 @@ wget http://gisky.be/osgeolive-inspire/data/HALE.desktop
 cp HALE.desktop "$USER_HOME/Desktop/" # For OSGeo live menu
 mv HALE.desktop /usr/share/applications # For standard menu
 chown "$USER_NAME:$USER_NAME" "$USER_HOME/Desktop/HALE.desktop"
-###
+####
+# install some data files
+cd /usr/local/share/data
+mkdir -p inspire
+cd inspire
+wget http://gisky.be/osgeolive-inspire/data/Dutch_Addresses_gml32.gml
+wget http://gisky.be/osgeolive-inspire/data/Dutch_Addresses_json.json
+wget http://gisky.be/osgeolive-inspire/data/Malta_FloodriskAreas_data.xml
+
+####
 "$BUILD_DIR"/diskspace_probe.sh "`basename $0`" end
