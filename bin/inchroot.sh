@@ -173,6 +173,7 @@ export USER_NAME
 ./install_openjump.sh
 ./install_gvsig.sh "$ARCH"
 ./install_gpsprune.sh
+./install_hale.sh "$ARCH"
 
 ## Java + default tomcat
 ./install_52nWPS.sh
@@ -262,12 +263,12 @@ rm /etc/hosts
 rm /etc/resolv.conf
 ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
 
-# If you installed software, be sure to run 
+# If you installed software, be sure to run
 rm /var/lib/dbus/machine-id
 rm /sbin/initctl
 dpkg-divert --rename --remove /sbin/initctl
 
-# Now umount (unmount) special filesystems and exit chroot 
+# Now umount (unmount) special filesystems and exit chroot
 umount /proc || umount -lf /proc
 umount /sys
 umount /dev/pts
