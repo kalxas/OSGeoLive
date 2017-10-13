@@ -54,6 +54,15 @@ cp HALE.desktop "$USER_HOME/Desktop/" # For OSGeo live menu
 mv HALE.desktop /usr/share/applications # For standard menu
 chown "$USER_NAME:$USER_NAME" "$USER_HOME/Desktop/HALE.desktop"
 ####
+# Fix GTK issue
+# https://github.com/halestudio/hale/issues/53
+
+sed -i '/-vmargs/i \
+--launcher.GTK_Version \
+2' /opt/hale/hale-studio-3.3.1-linux.gtk.x86_64/HALE.ini
+
+
+####
 # install some data files
 cd /usr/local/share/data
 mkdir -p inspire
