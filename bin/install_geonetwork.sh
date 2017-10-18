@@ -1,6 +1,6 @@
 #!/bin/sh
 #################################################
-# 
+#
 # Purpose: Installation of GeoNetwork into Lubuntu
 # Author:  Ricardo Pinho <ricardo.pinho@gisvm.com>
 # Author:  Simon Pigot <simon.pigot@csiro.au>
@@ -12,7 +12,7 @@
 # Copyright (c) 2009 GISVM.COM
 #
 # Licensed under the GNU LGPL version >= 2.1.
-# 
+#
 # This library is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published
 # by the Free Software Foundation, either version 2.1 of the License,
@@ -34,7 +34,7 @@
 #
 # To start geonetwork
 # cd /usr/local/lib/geonetwork/bin
-# ./startup.sh 
+# ./startup.sh
 #
 # To stop geonetwork
 # cd /usr/local/lib/geonetwork/bin
@@ -44,7 +44,7 @@
 # http://localhost:8880/geonetwork
 #
 # GeoNetwork version 3.2.1 runs with java 7 or higher.
-# It can be installed into servlet containers: jetty and tomcat. Jetty is   
+# It can be installed into servlet containers: jetty and tomcat. Jetty is
 # bundled with the installer.
 
 ./diskspace_probe.sh "`basename $0`" begin
@@ -67,11 +67,11 @@ BIN="/usr/local/bin"
 
 
 ## Setup things... ##
- 
+
 # check required tools are installed
 # (should we also verify java???)
 if [ ! -x "`which wget`" ] ; then
-   echo "ERROR: wget is required, please install it and try again" 
+   echo "ERROR: wget is required, please install it and try again"
    exit 1
 fi
 
@@ -154,6 +154,10 @@ wget -c --progress=dot:mega \
  -O geonetwork_icon.png
 mkdir -p /usr/local/share/icons
 mv geonetwork_icon.png /usr/local/share/icons/geonetwork_icon.png
+
+### update configuration to enable inspire
+wget http://gisky.be/osgeolive-inspire/config-service-inspireatom.xml -o /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
+wget http://gisky.be/osgeolive-inspire/config-csw-virtual.xml -o /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
 
 # No manual/doco as these are included in the geonetwork release as html
 # pages
