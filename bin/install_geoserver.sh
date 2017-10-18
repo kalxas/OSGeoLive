@@ -201,7 +201,7 @@ echo "Installing NetCDF extension"
 unzip -o -q "geoserver-$GS_VERSION-netcdf-plugin.zip" -d "$GS_HOME/webapps/geoserver/WEB-INF/lib"
 
 ###------------------------------------------
-### download and install CSWj extension
+### download and install CSW extension
 
 echo "Getting CSW extension"
 wget --progress=dot:mega \
@@ -209,6 +209,16 @@ wget --progress=dot:mega \
   "http://sourceforge.net/projects/geoserver/files/GeoServer/$GS_VERSION/extensions/geoserver-$GS_VERSION-csw-plugin.zip/download"
 echo "Installing CSW extension"
 unzip -o -q "geoserver-$GS_VERSION-csw-plugin.zip" -d "$GS_HOME/webapps/geoserver/WEB-INF/lib"
+
+###------------------------------------------
+### download and install APP-SCHEMA extension
+
+echo "Getting APP-SCHEMA extension"
+wget --progress=dot:mega \
+  -O "geoserver-$GS_VERSION-app-schema-plugin.zip" \
+  "http://sourceforge.net/projects/geoserver/files/GeoServer/$GS_VERSION/extensions/geoserver-$GS_VERSION-app-schema-plugin.zip/download"
+echo "Installing APP-SCHEMA extension"
+unzip -o -q "geoserver-$GS_VERSION-app-schema-plugin.zip" -d "$GS_HOME/webapps/geoserver/WEB-INF/lib"
 
 ###------------------------------------------
 ### install desktop icons ##
