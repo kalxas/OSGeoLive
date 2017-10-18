@@ -38,10 +38,10 @@ DOC_DIR="$GS_HOME/doc"
 
 
 ### Setup things... ###
- 
+
 ## check required tools are installed
 if [ ! -x "`which wget`" ] ; then
-   echo "ERROR: wget is required, please install it and try again" 
+   echo "ERROR: wget is required, please install it and try again"
    exit 1
 fi
 
@@ -201,6 +201,16 @@ echo "Installing NetCDF extension"
 unzip -o -q "geoserver-$GS_VERSION-netcdf-plugin.zip" -d "$GS_HOME/webapps/geoserver/WEB-INF/lib"
 
 ###------------------------------------------
+### download and install CSWj extension
+
+echo "Getting CSW extension"
+wget --progress=dot:mega \
+  -O "geoserver-$GS_VERSION-csw-plugin.zip" \
+  "http://sourceforge.net/projects/geoserver/files/GeoServer/$GS_VERSION/extensions/geoserver-$GS_VERSION-csw-plugin.zip/download"
+echo "Installing CSW extension"
+unzip -o -q "geoserver-$GS_VERSION-csw-plugin.zip" -d "$GS_HOME/webapps/geoserver/WEB-INF/lib"
+
+###------------------------------------------
 ### install desktop icons ##
 echo "Installing GeoServer icons"
 cp -f "$USER_HOME/gisvm/app-conf/geoserver/geoserver_48x48.logo.png" \
@@ -296,6 +306,10 @@ cp /usr/local/share/gisvm/app-data/geoserver/ne_10m*.sld \
 echo "Cleaning up Jetty JSP cache in /tmp"
 rm -rf /tmp/Jetty*geoserver*
 
+# Enable INSPIRE extension for wfs/wcs/wms
+wget http://gisky.be/osgeolive-inspire/wfs.xml -o /usr/local/lib/geoserver/data-dir
+wget http://gisky.be/osgeolive-inspire/wcs.xml -o /usr/local/lib/geoserver/data-dir
+wget http://gisky.be/osgeolive-inspire/wms.xml -o /usr/local/lib/geoserver/data-dir
 
 ####
 "$BUILD_DIR"/diskspace_probe.sh "`basename $0`" end
