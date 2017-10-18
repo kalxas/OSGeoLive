@@ -1,6 +1,6 @@
 #!/bin/sh
 #############################################################################
-# 
+#
 # Purpose: This script will take program icons collected on the Desktop, sort them
 # into folders, and create the Geospatial menu on the top-bar from them.
 # All the member-project's install_project.sh script has to do is place
@@ -12,7 +12,7 @@
 # Copyright (c) 2013-2016 Open Source Geospatial Foundation (OSGeo)
 #
 # Licensed under the GNU LGPL version >= 2.1.
-# 
+#
 # This library is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published
 # by the Free Software Foundation, either version 2.1 of the License,
@@ -57,7 +57,7 @@ BROWSER_CLIENTS="openlayers cesium leaflet geomajas-* mapbender3 GeoMOOSE geonod
 
 #Infrastructure and miscellanea
 SPATIAL_TOOLS="r jupyter-notebook* otb-*
-               mapslicer mapnik-* monteverdi* ossim-geocell"
+               mapslicer mapnik-* monteverdi* ossim-geocell HALE*"
 #disabled: imagelinker
 
 #Future home of PostGIS and Spatialite; pgRouting???
