@@ -156,8 +156,8 @@ mkdir -p /usr/local/share/icons
 mv geonetwork_icon.png /usr/local/share/icons/geonetwork_icon.png
 
 ### update configuration to enable inspire
-wget http://gisky.be/osgeolive-inspire/config-service-inspireatom.xml -O /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
-wget http://gisky.be/osgeolive-inspire/config-csw-virtual.xml -O /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
+# wget http://gisky.be/osgeolive-inspire/data/config-service-inspireatom.xml -O /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
+# wget http://gisky.be/osgeolive-inspire/data/config-csw-virtual.xml -O /usr/local/lib/geonetwork/web/geonetwork/WEB-INF/config
 
 # No manual/doco as these are included in the geonetwork release as html
 # pages
