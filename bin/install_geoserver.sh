@@ -317,9 +317,9 @@ echo "Cleaning up Jetty JSP cache in /tmp"
 rm -rf /tmp/Jetty*geoserver*
 
 # Enable INSPIRE extension for wfs/wcs/wms
-wget http://gisky.be/osgeolive-inspire/wfs.xml -O /usr/local/lib/geoserver/data-dir
-wget http://gisky.be/osgeolive-inspire/wcs.xml -O /usr/local/lib/geoserver/data-dir
-wget http://gisky.be/osgeolive-inspire/wms.xml -O /usr/local/lib/geoserver/data-dir
+wget http://gisky.be/osgeolive-inspire/data/wfs.xml -O /usr/local/lib/geoserver/data-dir/wfs.xml
+wget http://gisky.be/osgeolive-inspire/data/wcs.xml -O /usr/local/lib/geoserver/data-dir/wcs.xml
+wget http://gisky.be/osgeolive-inspire/data/wms.xml -O /usr/local/lib/geoserver/data-dir/wms.xml
 
 ####
 "$BUILD_DIR"/diskspace_probe.sh "`basename $0`" end
