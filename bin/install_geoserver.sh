@@ -316,10 +316,15 @@ cp /usr/local/share/gisvm/app-data/geoserver/ne_10m*.sld \
 echo "Cleaning up Jetty JSP cache in /tmp"
 rm -rf /tmp/Jetty*geoserver*
 
+# Use appschema example dataset
+rm -rf /usr/local/lib/geoserver/data-dir/
+mv /usr/local/lib/geoserver/webapps/geoserver/WEB-INF/lib/tutorials/* /usr/local/lib/geoserver/data-dir/
+
 # Enable INSPIRE extension for wfs/wcs/wms
-wget http://gisky.be/osgeolive-inspire/data/wfs.xml -O /usr/local/lib/geoserver/data-dir/wfs.xml
-wget http://gisky.be/osgeolive-inspire/data/wcs.xml -O /usr/local/lib/geoserver/data-dir/wcs.xml
-wget http://gisky.be/osgeolive-inspire/data/wms.xml -O /usr/local/lib/geoserver/data-dir/wms.xml
+# I suggest to reenable when we have sensible setting
+# wget http://gisky.be/osgeolive-inspire/data/wfs.xml -O /usr/local/lib/geoserver/data-dir/wfs.xml
+# wget http://gisky.be/osgeolive-inspire/data/wcs.xml -O /usr/local/lib/geoserver/data-dir/wcs.xml
+# wget http://gisky.be/osgeolive-inspire/data/wms.xml -O /usr/local/lib/geoserver/data-dir/wms.xml
 
 ####
 "$BUILD_DIR"/diskspace_probe.sh "`basename $0`" end
