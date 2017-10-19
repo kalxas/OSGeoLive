@@ -8,7 +8,7 @@
 <com.izforge.izpack.panels.PacksPanel id="packsPanel">
 <pack index="0" name="Core" selected="true"/>
 <pack index="1" name="GeoServer" selected="false"/>
-<pack index="2" name="European Union INSPIRE Directive configuration pack" selected="false"/>
+<pack index="2" name="European Union INSPIRE Directive configuration pack" selected="true"/>
 </com.izforge.izpack.panels.PacksPanel>
 <com.izforge.izpack.panels.UserInputPanel id="userInputPanel">
 <userInput>
