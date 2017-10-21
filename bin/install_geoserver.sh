@@ -317,10 +317,10 @@ echo "Cleaning up Jetty JSP cache in /tmp"
 rm -rf /tmp/Jetty*geoserver*
 
 # Use appschema example dataset
-rm -rf /usr/local/lib/geoserver/data_dir/
-mkdir /usr/local/lib/geoserver/data_dir/
+rm -rf /usr/local/lib/geoserver/data_dir/*
 cp -r /usr/local/lib/geoserver/webapps/geoserver/WEB-INF/lib/tutorial/* /usr/local/lib/geoserver/data_dir/
 
+chown -R user:user /usr/local/lib/geoserver/data_dir/*
 # Enable INSPIRE extension for wfs/wcs/wms
 # I suggest to reenable when we have sensible setting
 # wget http://gisky.be/osgeolive-inspire/data/wfs.xml -O /usr/local/lib/geoserver/data-dir/wfs.xml
