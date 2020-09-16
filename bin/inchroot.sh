@@ -198,6 +198,9 @@ export USER_NAME
 ## Rust
 # ./install_trex.sh
 
+## Go
+./install_tegola.sh
+
 ## Javascript et al
 # ./install_openlayers.sh
 # ./install_leaflet.sh
