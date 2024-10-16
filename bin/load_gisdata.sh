@@ -8,7 +8,7 @@
 # Source:  http://www.naturalearthdata.com
 #
 #################################################
-# Copyright (c) 2010-2022 Open Source Geospatial Foundation (OSGeo) and others.
+# Copyright (c) 2010-2024 Open Source Geospatial Foundation (OSGeo) and others.
 # Copyright (c) 2009 LISAsoft
 #
 # Licensed under the GNU LGPL version >= 2.1.
@@ -27,7 +27,6 @@
 ./diskspace_probe.sh "`basename $0`" begin
 BUILD_DIR=`pwd`
 ####
-
 
 TMP="/tmp/build_gisdata"
 DATA_FOLDER="/usr/local/share/data"
@@ -146,8 +145,6 @@ RFILE=HYP_50M_SR_W_reduced.zip
 wget -c --progress=dot:mega \
    "http://download.osgeo.org/livedvd/data/natural_earth2/$RFILE"
 
-#	"$BASE_URL/http//www.naturalearthdata.com/download/50m/raster/$RFILE"
-
 unzip "$RFILE"
 
 #mv HYP_50M_SR_W.tif HYP_50M_SR_W_orig.tif
@@ -233,41 +230,55 @@ cd nc_data
 
 mkdir -p "$DATA_FOLDER/north_carolina"
 
-
-ln -s /usr/lib/python3/dist-packages/gisdata/data/good/raster/relief_san_andres.tif \
-       $DATA_FOLDER/raster/relief_san_andres.tif
-
-ln -s /usr/lib/python3/dist-packages/gisdata/data/good/raster/test_grid.tif \
-      $DATA_FOLDER/raster/test_grid.tif
-
+## ol17 not found
+#ln -s /usr/lib/python3/dist-packages/gisdata/data/good/raster/relief_san_andres.tif \
+#       $DATA_FOLDER/raster/relief_san_andres.tif
+#
+#ln -s /usr/lib/python3/dist-packages/gisdata/data/good/raster/test_grid.tif \
+#      $DATA_FOLDER/raster/test_grid.tif
 
 ##-- useful metadata  31jan15
 ##-- TODO: wget -N http://www.grassbook.org/presentations/MitOSGeoDataFOSS4G9.pdf
+
 wget -N http://www.grassbook.org/grasslocations/nc_epsg_codes.html
 wget -N http://grass.osgeo.org/sampledata/north_carolina/README.html
 
 mv nc_epsg_codes.html README.html "$DATA_FOLDER/north_carolina/"
 
-#--
-for FILE in $FILES ; do
-   wget -N --progress=dot:mega "$BASE_URL/nc_$FILE.tar.gz"
-done
+##  ol17 build disk space hack  15oct24 dbb
+if test false ; then
 
-#and install them ...
-cd "$DATA_FOLDER/north_carolina"
-for FILE in $FILES ; do
-   mkdir -p "$FILE"
-   cd "$FILE"
-   tar xzf "$TMP/nc_data/nc_$FILE.tar.gz"
-   mv nc*/* .
-   rmdir nc*/
-   cd ..
-   chgrp users "$FILE"
-   chmod g+w "$FILE"
-done
+  #--
+  for FILE in $FILES ; do
+     wget -N --progress=dot:mega "$BASE_URL/nc_$FILE.tar.gz"
+  done
+
+  #and install them ...
+  cd "$DATA_FOLDER/north_carolina"
+  for FILE in $FILES ; do
+     mkdir -p "$FILE"
+     cd "$FILE"
+     tar xzf "$TMP/nc_data/nc_$FILE.tar.gz"
+     mv nc*/* .
+     rmdir nc*/
+     cd ..
+     chgrp users "$FILE"
+     chmod g+w "$FILE"
+  done
+
+else
+
+  LFILE=north_carolina
+  mkdir $LFILE
+  wget -c --progress=dot:mega \
+     https://download.osgeo.org/livedvd/17/$LFILE.7z
+  7z e -o$LFILE  $LFILE.7z
+  mv $LFILE/*  "$DATA_FOLDER/$LFILE/"
+
+fi;
+
 
 touch "$DATA_FOLDER"/north_carolina/shape/epsg-3358.txt
-
 
 cd "$TMP"
 
@@ -332,3 +343,4 @@ chown -R root.root "$DATA_FOLDER"/north_carolina
 
 ####
 "$BUILD_DIR"/diskspace_probe.sh "`basename $0`" end
+
